@@ -1,0 +1,8 @@
+com\standardDemo\standardChartered\entities\UserAccount.class
+com\standardDemo\standardChartered\entities\Transaction.class
+com\standardDemo\standardChartered\repositories\UserRepository.class
+com\standardDemo\standardChartered\sevices\UserServiceImpl.class
+com\standardDemo\standardChartered\entities\User.class
+com\standardDemo\standardChartered\StandardCharteredApplication.class
+com\standardDemo\standardChartered\controller\WebController.class
+com\standardDemo\standardChartered\sevices\UserService.class

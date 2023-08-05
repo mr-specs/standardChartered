@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <style>
+        /* Same CSS styles as before */
+    </style>
+</head>
+<body>
+    <h1>Account Summary</h1>
+    <table>
+        <tr>
+            <th>Account Type</th>
+            <th>Account Number</th>
+            <th>Available Balance</th>
+            <th>Current Balance</th>
+            <th>Account ID</th>
+        </tr>
+        <tr th:each="userAccount : ${userAccount}" data-account-id="${userAccount.accountId}">
+            <td th:text="${userAccount.accountType}"></td>
+            <td th:text="${userAccount.accountNumber}"></td>
+            <td th:text="${userAccount.availableBalance}"></td>
+            <td th:text="${userAccount.currentBalance}"></td>
+            <td>
+                <!-- Add an anchor link with the account ID as the href attribute -->
+                <a th:href="'/gettransaction/' + ${userAccount.accountId}+'/'+${userAccount.userId}">
+                    <span >View Transactions</span>
+                </a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
