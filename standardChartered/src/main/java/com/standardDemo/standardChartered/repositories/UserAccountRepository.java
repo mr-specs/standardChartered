@@ -15,5 +15,8 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Long> 
 	@Query(value="select * from user_accounts where user_id =:userId",nativeQuery = true)
 	List<UserAccount> findById(@Param("userId")int userId);
 
+	@Query(value="select * from user_accounts where user_id in (select user_id from user_accounts where account_number =:accountNumber)",nativeQuery = true)
+	List<UserAccount> findByAccountNumber(@Param("accountNumber")Long accountNumber);
+
 
 }

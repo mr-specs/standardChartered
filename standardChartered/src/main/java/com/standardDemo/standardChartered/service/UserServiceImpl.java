@@ -9,27 +9,19 @@ import org.springframework.stereotype.Service;
 import com.standardDemo.standardChartered.entities.User;
 import com.standardDemo.standardChartered.repositories.UserRepository;
 
-
 @Service
-public class UserServiceImpl implements UserService  {
+public class UserServiceImpl implements UserService {
 	@Autowired
-    UserRepository userRepository;
+	UserRepository userRepository;
 
 	@Override
 	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		List<User>allUsersFromRepo = userRepository.findAll();
-	    System.out.println("Number of users retrieved: " + allUsersFromRepo.size());
-	    for (User user : allUsersFromRepo) {
-            System.out.println("User ID: " + user.getUserId());
-            System.out.println("Username: " + user.getUsername());
-            System.out.println("Email: " + user.getEmail());
-            System.out.println("Full Name: " + user.getFullName());
-            System.out.println("Date of Birth: " + user.getDateOfBirth());
-            System.out.println("Created At: " + user.getCreatedAt());
-            System.out.println("-----------------------------------");
-        }
-
+		List<User> allUsersFromRepo = null;
+		try {
+			allUsersFromRepo = userRepository.findAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return allUsersFromRepo;
 	}
 
@@ -40,15 +32,13 @@ public class UserServiceImpl implements UserService  {
 
 	@Override
 	public List<User> getUsersById(int userId) {
-		// TODO Auto-generated method stub
-		
-		List<User> userDetails = userRepository.findById(userId);
-		
+		List<User> userDetails = null;
+		try {
+			userDetails = userRepository.findById(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return userDetails;
 	}
-	 
-
-   
-
 
 }

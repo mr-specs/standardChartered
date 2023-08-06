@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1" />
+    <title>Spring Boot Application</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f5f9; /* Light blue background */
+        }
+
+        .form-container {
+            background: linear-gradient(to bottom, #cfe7f9, #95cbee); /* Different shades of blue for background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #005a80; /* Dark blue heading color */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            color: #005a80; /* Dark blue label color */
+        }
+
+       input[type="text"],
+    input[type="password"] {
+        width: 200px; /* Set the width to your desired value (e.g., 200px) */
+        padding: 10px;
+        border: 1px solid #d0d5da; /* Light gray-blue border */
+        border-radius: 3px;
+    }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .submit-button {
+            background: linear-gradient(to bottom, #007bff, #005cbf); /* Different shades of blue for submit button */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .loading-spinner img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Login Form</h2>
+        <form id="loginForm" action="/login" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="loading-spinner" id="loadingSpinner">
+                <img src="loading.gif" alt="Loading...">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="submit-button" onclick="submitForm()">
+            </div>
+        </form>
+
+        <!-- Display error message if authentication fails -->
+        <div th:if="${error}" class="error-message">
+            <span th:text="${error}"></span>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            var loginForm = document.getElementById("loginForm");
+            var loadingSpinner = document.getElementById("loadingSpinner");
+
+            // Display the loading spinner and hide the submit button
+            loadingSpinner.style.display = "block";
+            loginForm.style.display = "none";
+
+            // Simulate form submission delay (remove this in the real application)
+            setTimeout(function() {
+                // Hide the loading spinner and display the submit button
+                loadingSpinner.style.display = "none";
+                loginForm.style.display = "block";
+
+                // Submit the form
+                loginForm.submit();
+            }, 2000); // Simulate a 2-second delay for form submission (remove this in the real application)
+        }
+    </script>
+</body>
+</html>

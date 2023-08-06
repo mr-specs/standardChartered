@@ -10,8 +10,9 @@ public class ResponseTransModel {
 
 	private List<TransactionDet> transactinDetList;
 	
-
     private Double finalBalance;
     
     private Double finalAvailBalance;
+    
+    private List<String> accountNumber;
 }

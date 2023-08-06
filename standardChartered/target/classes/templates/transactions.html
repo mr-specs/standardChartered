@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Table with Footer Total</title>
+  
+    
     <style>
+    
         body {
             font-family: Arial, sans-serif;
+            margin: 0 20px;
         }
 
         table {
@@ -20,27 +24,44 @@
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color:  #9C27B0 ;
+            color: #FFF;
         }
 
         tfoot th {
             background-color: #e2e2e2;
+            color: #000;
         }
+         td {       
+        background-color: #E0E0E0;
+    font-weight: bold;
+}
     </style>
 </head>
-<body>
-    <h2>Table with Footer Total</h2>
-    <!--  <select id="dynamicDropdown" data-id="dynamicDropdown">
-    <!-- Options will be populated dynamically using Thymeleaf -->
-    <option th:each="option : ${dynamicOptions}" 
-            th:value="${option.value}"
-            th:text="${option.label}">
-    </option>
-	</select>
+<body class="container-fluid">
+    <h2>Transactin screen</h2>
+ <form id="myForm" action="/submitAction" method="post">
 
-	<!-- Add a "Go" button -->
-	<button onclick="handleGo()">Go</button> -->
+    <!-- The <select> element represents the dynamic dropdown -->
+    <select id="dynamicDropdown" name="selectedValue" th:object="${selectedAccountNumber}" >
+        <!-- Options will be populated dynamically using Thymeleaf -->
+        <option th:each="accountNumber : ${transactions.accountNumber}" 
+                th:value="${accountNumber}"
+                th:text="${accountNumber}"
+                >
+        </option>
+    </select>
+
+    <!-- Add a "Go" button -->
+    <button type="submit" >Go</button>
+            
+             
+
+</form>
+
     <br>
+        <div th:if="${#lists.size(transactions.transactinDetList) > 0}">
+    
     <table>
         <thead>
             <tr>
@@ -78,5 +99,9 @@
             </tr>
         </tfoot>
     </table>
+    </div>
+    <div th:if="${#lists.size(transactions.transactinDetList) == 0}">
+        <p>No Transaction data found.</p>
+    </div>
 </body>
 </html>

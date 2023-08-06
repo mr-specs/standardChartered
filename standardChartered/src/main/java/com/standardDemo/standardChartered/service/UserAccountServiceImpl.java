@@ -9,13 +9,19 @@ import com.standardDemo.standardChartered.entities.UserAccount;
 import com.standardDemo.standardChartered.repositories.UserAccountRepository;
 
 @Service
-public class UserAccountServiceImpl implements UserAccountService{
+public class UserAccountServiceImpl implements UserAccountService {
 
 	@Autowired
 	UserAccountRepository userAccountRepository;
+
 	@Override
 	public List<UserAccount> getUsersById(int userId) {
-		List<UserAccount> userDetails = userAccountRepository.findById(userId);
+		List<UserAccount> userDetails = null;
+		try {
+			userDetails = userAccountRepository.findById(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return userDetails;
 	}
 

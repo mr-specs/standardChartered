@@ -2,13 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Dashboard</title>
-    <style>
-        /* Same CSS styles as before */
-    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link th:href="@{/style.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
 </head>
 <body>
-    <h1>Account Summary</h1>
-    <table>
+  <div class="container-fluid">
+<nav class="navbar navbar-default nav-bar-center">
+    <div class="navbar-header">
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Accounts</a></li>
+      <li><a href="#">Cards</a></li>
+      <li><a href="#">Change Password</a></li>
+      <li><a href="#">eStatements</a></li>
+      <li><a href="#">eServices</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul>
+</nav>
+<div class="container my-2" align="center">
+     <div style="color:Black;font-weight: bold;" align = "Center">ACCOUNT SUMMARY</div>
+     <br>
+     <table style="width:80%" border="1"
+           class = "table table-striped table-responsive-md">
         <tr>
             <th>Account Type</th>
             <th>Account Number</th>
@@ -23,11 +42,13 @@
             <td th:text="${userAccount.currentBalance}"></td>
             <td>
                 <!-- Add an anchor link with the account ID as the href attribute -->
-                <a th:href="'/gettransaction/' + ${userAccount.accountId}+'/'+${userAccount.userId}">
+                <a th:href="'/gettransaction/' + ${userAccount.accountNumber}">
                     <span >View Transactions</span>
                 </a>
             </td>
         </tr>
     </table>
+    </div>
+  </div>
 </body>
 </html>

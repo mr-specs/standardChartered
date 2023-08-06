@@ -4,6 +4,8 @@ import com.standardDemo.standardChartered.entities.ResponseTransModel;
 
 public interface TransactionService {
 	
-	ResponseTransModel  getTransactionDetById(int accountId, int userId);
+//	ResponseTransModel  getTransactionDetById(int accountId, int userId);
+
+	ResponseTransModel getTransactionDetByAccountNumber(Long accountNumber);
 
 }

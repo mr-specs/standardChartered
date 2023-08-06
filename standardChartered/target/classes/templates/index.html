@@ -2,24 +2,84 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1" />
-    <link href="css/styles.css" rel="stylesheet" />
     <title>Spring Boot Application</title>
+    <!-- <link href="../templates/style.css" rel="stylesheet" /> -->
+    <link th:href="@{/style.css}" rel="stylesheet" />
+    <!-- C:\Users\Abinesh\Desktop\gow\standardChartered\src\main\resources\templates\script.js -->
+     <!-- <script src="../templates/script.js"></script> -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
 </head>
-<body>
-    <h2>Login Form</h2>
-    <form action="/login" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
+<body class="nav-bar-center" onload="createCaptcha()">
+    <div class="form-container">
+        <h2>Login Form</h2>
+        <form id="loginForm"action="/login" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
 
-        <input type="submit" value="Login">
-    </form>
+             <!-- Radio buttons for captcha selection -->
+             <div class="form-group">
+                <input type="radio" id="captchaImage" name="captchaType" value="image" onclick="createCaptcha()" th:checked="${true}">
+                <label for="captchaImage"><i class="fa fa-image"></i> Image Text</label>
 
-    <!-- Display error message if authentication fails -->
-    <div th:if="${error}" style="color: red;">
-        <span th:text="${error}"></span>
+                <input type="radio" id="captchaAudio" name="captchaType" value="audio" >
+                <label for="captchaAudio"><i class="fa fa-volume-up"></i> Audio</label>
+
+            </div>
+
+            <!-- Captcha container for either audio or image text -->
+            <div id="captcha" ></div>
+            <div id="AudioCaptcha"onclick="playCaptcha()" >
+                <label for="captchaAudio"> Click to Play Audio</label>
+            </div>
+            
+            <!-- <input type="text" placeholder="Captcha" id="captchaTextBox" name ="captchaTextBox" /> -->
+            
+            <input type="text" placeholder="Captcha" id="captchaTextBox" name="captchaTextBox" />
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="submit-button" onclick="validateCaptcha()"/>
+            </div>
+        </form>
+
+        <!-- Display error message if authentication fails -->
+        <div th:if="${error}" class="error-message">
+            <span th:text="${error}"></span>
+        </div>
     </div>
+
+
+    <script type="text/javascript" th:src="@{./script.js}"></script>
+
+    <script th:inline="javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the radio buttons and the div to hide
+            var option1 = document.getElementById("captchaImage");
+            var option2 = document.getElementById("captchaAudio");
+            var divToHide = document.getElementById("captcha");
+            var divToHide1 = document.getElementById("AudioCaptcha");
+
+            document.getElementById("captchaImage").addEventListener("change", function() {
+            document.getElementById("AudioCaptcha").style.display = "none";
+            document.getElementById("captcha").style.display = "block";
+        });
+
+        document.getElementById("captchaAudio").addEventListener("change", function() {
+            document.getElementById("captcha").style.display = "none";
+            document.getElementById("AudioCaptcha").style.display = "block";
+
+        });
+        });
+    </script>
+
+       <!-- <script src="script.js"></script> -->
+       
 </body>
 </html>
