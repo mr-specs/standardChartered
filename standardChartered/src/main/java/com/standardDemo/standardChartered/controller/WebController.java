@@ -65,7 +65,7 @@ public class WebController {
 		return mav;
 	}
 
-	/*
+	/*//
 	 * @GetMapping(value = "/gettransaction/{accountId}/{userId}") public String
 	 * index(@PathVariable("accountId") int accountId,@PathVariable("userId") int
 	 * userId,Model model) { try { String a =
